@@ -33,6 +33,9 @@ body{
   text-align: center;
   font-size: 18px;
 }
+#search-input:focus{
+  outline: none;;
+}
 
 #container{
   margin: 0 10%;

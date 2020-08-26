@@ -25,7 +25,7 @@ const pokedex = document.querySelector(".pokedex");
 async function pokeInfo(){
   let promises = [];
   let allJsons = [];
-  const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=150');
+  const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=30');
   const json = await response.json();
   json.results.forEach(element => {
     promises.push(fetch(element.url))
