@@ -1,5 +1,7 @@
+const off = 24;
 window.onload = setup();
 
+var offset = 0;
 const colors = {
 	grass: "#78bf60",
 	poison: "#c978ff",
@@ -22,10 +24,23 @@ const colors = {
 
 const pokedex = document.querySelector(".pokedex");
 
+function offsetNext(){
+  if(offset==0) document.getElementById('prev').classList.remove('hide');
+  offset += off;
+  setup();
+}
+function offsetPrev(){
+  if(offset>0){
+    offset -= off;
+    setup();
+  }
+  if(offset == 0) document.getElementById('prev').classList.add('hide');
+}
+
 async function pokeInfo(){
   let promises = [];
   let allJsons = [];
-  const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=30');
+  const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit='+off+'&offset='+offset);
   const json = await response.json();
   json.results.forEach(element => {
     promises.push(fetch(element.url))
@@ -53,9 +68,9 @@ function setup(){
       if(pokemonTypes[1]){
         pokedex.innerHTML += `
           <div id="${pokemonName.toUpperCase()}" class="poke-card">
-            <img class="poke-img" src="https://pokeres.bastionbot.org/images/pokemon/${index + 1}.png" alt="pokemon ${index+1}">
+            <img class="poke-img" src="https://pokeres.bastionbot.org/images/pokemon/${index + 1 + offset}.png" alt="pokemon ${index+1+offset}">
             <div class="circle"></div>
-            <h5 class="poke-number">#${index+1}</h5>
+            <h5 class="poke-number">#${index+1+offset}</h5>
             <h3 class="poke-name">${pokemonName.toUpperCase()}</h3>
             <div class="type-container">
               <h5 class="type-text">TIPO: </h5>
@@ -69,9 +84,9 @@ function setup(){
       else{
         pokedex.innerHTML += `
           <div id="${pokemonName.toUpperCase()}" class="poke-card">
-            <img class="poke-img" src="https://pokeres.bastionbot.org/images/pokemon/${index + 1}.png" alt="pokemon ${index+1}">
+            <img class="poke-img" src="https://pokeres.bastionbot.org/images/pokemon/${index + 1 + offset}.png" alt="pokemon ${index+1+offset}">
             <div class="circle"></div>
-            <h5 class="poke-number">#${index+1}</h5>
+            <h5 class="poke-number">#${index+1+offset}</h5>
             <h3 class="poke-name">${pokemonName.toUpperCase()}</h3>
             <div class="type-container">
               <h5 class="type-text">TIPO: </h5>
