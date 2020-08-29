@@ -1,4 +1,4 @@
-const off = 24;
+const off = 150;
 window.onload = setup();
 
 var offset = 0;
@@ -108,6 +108,7 @@ function setup(){
       }
     });
   });
+  document.getElementById('next').classList.remove('hide');
 }
 
 

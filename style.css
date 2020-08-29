@@ -125,7 +125,7 @@ body{
 .page-controllers{
   width: 100%;
   height: 4%;
-  display: flex;
+  display: none; /*CAMBIARLO POR FLEX CUANDO VUELVAN LOS BOTONEEEEEEEEEEES--------------------------*/
   align-items: flex-start;
   justify-content: center;
 }
